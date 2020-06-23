@@ -8,7 +8,28 @@
   <title>Pokedex</title>
 </head>
 <body>
-  
+
+  <input type="text" [(ngModel)]="this.name"/>
+  <button (click)="pesquisar()">PESQUISAR POKEMON</button>
+
+  <h1>Nome: {{pokemon.name | titlecase}}</h1>
+  <h2>Altura: {{pokemon.height}}</h2>
+  <h2>Peso: {{pokemon.weight}}</h2>
+
+  <h2>Habilidade(s):
+  <div *ngFor="let ability of pokemon.abilities">
+    {{ability.name}} => {{ability.description}}
+  </div>
+</h2>
+
+<h2>Tipo(s):
+  <div *ngFor="let type of pokemon.types">
+    {{type.name}}
+  </div>
+</h2>
+
+<img src="{{pokemon.img_front_url}}"/> <img src="{{pokemon.img_back_url}}"/> 
+
 </body>
 </html>
 
