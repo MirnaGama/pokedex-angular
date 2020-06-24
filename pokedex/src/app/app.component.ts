@@ -12,6 +12,9 @@ export class AppComponent {
 
   pokemon = new Pokemon();
   name: string;
+  pokemonList = new Array();
+  searchPokemon = false;
+  searchPokemonList = false;
 
   constructor(private pkService: PokemonService) {
   }
@@ -20,9 +23,17 @@ export class AppComponent {
     
   }
 
-  pesquisar() {
-    this.pokemon = this.pkService.searchByPokemonName(this.name);
+  searchPokemonByName() {
+    this.searchPokemonList = false
+    this.pokemon = this.pkService.searchPokemonByName(this.name);
     console.log(this.pokemon)
+    this.searchPokemon = true;
+  }
+
+  searchByType() {
+    this.searchPokemon = false
+    this.pokemonList = this.pkService.searchByTypeName(this.name);
+    this.searchPokemonList = true;
   }
 
   }

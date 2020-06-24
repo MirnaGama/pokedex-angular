@@ -1,0 +1,13 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 300px;
+    height: auto;
+    margin-right: 30px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: #a5eca3be;
+  }

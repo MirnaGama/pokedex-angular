@@ -9,11 +9,12 @@ export class PokemonService {
 
   requestUrl = 'https://pokeapi.co/api/v2/';
   pokemonUrl = this.requestUrl +'pokemon/';
+  typeUrl = this.requestUrl + 'type/';
 
   constructor(private http: HttpClient) {
    }
 
-   searchByPokemonName(name): any {
+   searchPokemonByName(name): any {
     let pokemonRequest = this.http.get<any>(this.pokemonUrl + name);
     var pok = new Pokemon();
     
@@ -56,5 +57,23 @@ export class PokemonService {
     });
 
     return pok;
+  }
+
+  searchByTypeName(name): any {
+    let typeRequest = this.http.get<any>(this.typeUrl+name);
+    let pokemonList = new Array();
+
+    typeRequest.subscribe((data) => {
+
+      data['pokemon'].forEach(element => {
+        let pokemon = new Pokemon();
+        pokemon = this.searchPokemonByName(element['pokemon']['name'])
+
+        pokemonList.push(pokemon);
+
+      });
+    })
+
+    return pokemonList;
   }
 }
