@@ -54,7 +54,10 @@ export class PokemonService {
 
       pok['types'] = types;
 
-    });
+
+    }, (error) => {
+       console.log("POKEMON NAO ENCONTRADO")
+       return null; })
 
     return pok;
   }
@@ -66,13 +69,19 @@ export class PokemonService {
     typeRequest.subscribe((data) => {
 
       data['pokemon'].forEach(element => {
-        let pokemon = new Pokemon();
+
+       let pokemon = new Pokemon();
         pokemon = this.searchPokemonByName(element['pokemon']['name'])
 
         pokemonList.push(pokemon);
+      })
 
-      });
-    })
+    }, 
+    
+    (error) => {
+      console.log("LISTA DE POKEMON NAO ENCONTRADA") 
+      return null;
+  })
 
     return pokemonList;
   }

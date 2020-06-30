@@ -1,20 +1,25 @@
 import { Component } from '@angular/core';
 import { Pokemon } from 'src/utils/models';
 import { PokemonService } from 'src/services/pokemon.service';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'pokedex';
 
   pokemon = new Pokemon();
-  name: string;
+  namePokemon: string; 
+  nameType: string;
   pokemonList = new Array();
-  searchPokemon = false;
-  searchPokemonList = false;
+  p: number = 1;
+  choosePokemon = false;
+  pokemonEmpty = false;
+  pokemonListEmpty = true;
 
   constructor(private pkService: PokemonService) {
   }
@@ -24,16 +29,24 @@ export class AppComponent {
   }
 
   searchPokemonByName() {
-    this.searchPokemonList = false
-    this.pokemon = this.pkService.searchPokemonByName(this.name);
-    console.log(this.pokemon)
-    this.searchPokemon = true;
+    this.namePokemon = this.namePokemon.toLowerCase();
+    this.pokemon = this.pkService.searchPokemonByName(this.namePokemon);
+
+    this.show(this.pokemon);
   }
 
   searchByType() {
-    this.searchPokemon = false
-    this.pokemonList = this.pkService.searchByTypeName(this.name);
-    this.searchPokemonList = true;
+    this.nameType = this.nameType.toLowerCase();
+    this.pokemonList = this.pkService.searchByTypeName(this.nameType);
+  }
+
+  show(pokemon) {
+    
+    this.pokemon = pokemon;
+
+    console.log(this.pokemon);
+    this.choosePokemon = true;
+
   }
 
   }

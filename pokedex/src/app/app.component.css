@@ -1,13 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.welcomeBanner {
+  text-align: center;
+  padding-top: 150px;
+}
+
 .card {
+    font-family: 'Press Start 2P', cursive;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: 300px;
     height: auto;
-    margin-right: 30px;
-    margin-left: 80px;
-    margin-bottom: 20px;
   }
   
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    background-color: #a5eca3be;
+    background-color: #a5eca3f6;
   }
+
+
+  .search {
+    font-family: 'Press Start 2P', cursive;
+    padding-bottom: 20px;
+    font-size: small;
+  }
+
+  .pokemonScreen {
+    border-radius: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 500px;
+    min-height: 600px;
+    max-height: 600px;
+    background-color: #4ea2c4f6;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: rgb(255, 255, 255);
+    border: 3px solid black;
+  }
+
+  .types {
+    font-size: 10px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: rgb(255, 255, 255);
+  }
+
+  .type {
+    border-radius: 50px;
+    border: 1px solid black;
+    max-width: 200px;
+    padding-left: 10px;
+    padding-top: 2px;
+    padding-right: 10px;
+  }
+
+  #water {
+    background-color: rgb(63, 141, 194);
+  }
+
+  #ice {
+    background-color: rgb(89, 230, 218);
+  }
+
+  #grass {
+    background-color: rgb(64, 175, 79);
+  }
+
+  #bug {
+    background-color: rgb(112, 206, 69);
+  }
+
+  #poison {
+    background-color: rgb(123, 39, 131);
+  }
+
+  #dark {
+    background-color: rgb(31, 25, 32);
+  }
+
+  #electric {
+    background-color: rgb(238, 200, 32);
+  }
+
+  #fire {
+    background-color: rgb(221, 43, 43);
+  }
+
+  #rock {
+    background-color: rgb(173, 123, 66);
+  }
+
+  #psychic {
+    background-color: rgb(199, 71, 156);
+  }
+
+  #steel {
+    background-color: rgb(128, 123, 126);
+  }
+
+  #ground {
+    background-color: rgb(161, 147, 65);
+  }
+
+  #fairy {
+    background-color: rgb(224, 129, 193);
+  }
+
+  #normal {
+    background-color: rgb(160, 156, 150);
+  }
+
+  #dragon {
+    background-color: rgb(120, 81, 228);
+  }
+
+  #flying {
+    background-color: rgb(113, 111, 247);
+  }
+
+  #ghost {
+    background-color: rgb(87, 56, 170);
+  }
+
+  #fighting {
+    background-color: rgb(109, 36, 14);
+  }
+

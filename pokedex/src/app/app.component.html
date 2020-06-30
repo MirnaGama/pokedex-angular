@@ -1,76 +1,62 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <div class="search"><input type="text" [(ngModel)]="this.namePokemon"/>
+  <button (click)="searchPokemonByName()">search by name</button>
 
-  <title>Pokedex</title>
 
-</head>
-<body>
+<input type="text" [(ngModel)]="this.nameType"/>
+  <button (click)=" searchByType()">search by type</button>
 
-  <input type="text" [(ngModel)]="this.name"/>
-  <button (click)="searchPokemonByName()">PESQUISAR POKEMON POR NOME</button>
-  <button (click)=" searchByType()">PESQUISAR POR TIPO</button>
-
-  <div *ngIf="this.searchPokemon">
-    
-      
-       <div class="container">
-        <p> <img src="{{pokemon.img_front_url}}" style="width: 100px"/><img src="{{pokemon.img_back_url}}" style="width: 100px"/></p>
-        
-         <h4><b>{{pokemon.name | titlecase}}</b></h4>
- 
-         <p>Height:  {{pokemon.height}}</p>
-         <p>Weight: {{pokemon.weight}}</p>
- 
-         <p><b>Abilities:</b></p>
-         <div *ngFor="let ability of pokemon.abilities">
-           <p>{{ability.name}}: <i>{{ability.description}}</i></p>
-         </div>
-
-         <p><b>Types:</b></p>
-         <div *ngFor="let type of pokemon.types">
-           <p>{{type.name}}</p>
-         </div>
- 
-       </div>
-
-</div>
-
-<div *ngIf="this.searchPokemonList">
+<div class="pokemonList">
 
   <div class="row">
-  <div *ngFor="let pokemon of pokemonList">
+  <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 6, currentPage: p }">
 
-    <div class="card">
+    <div class="card" (click)="show(pokemon)">
     
-     <p> <img src="{{pokemon.img_front_url}}" style="width: 100px"/><img src="{{pokemon.img_back_url}}" style="width: 100px"/></p>
-     
       <div class="container">
-        <h4><b>{{pokemon.name | titlecase}}</b></h4>
-
-        <p>Height:  {{pokemon.height}}</p>
-        <p>Weight: {{pokemon.weight}}</p>
-
-        <p><b>Abilities:</b></p>
-        <div *ngFor="let ability of pokemon.abilities">
-          <p>{{ability.name}}: <i>{{ability.description}}</i></p>
-        </div>
+       <b>{{pokemon.name | titlecase}}</b>
 
       </div>
     </div>
+
   </div>
+  </div>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+  <div class="pokemonScreen">
+
+    <div class="welcomeBanner" *ngIf="!choosePokemon">
+      <h1>WELCOME TO THE ANGULAR POKEDEX!</h1>
+      <h4>Search a pokemon!</h4>
+    </div>
+
+    <div class="container" *ngIf="pokemonEmpty">
+      <h1>Oops! Pokemon not found! :(</h1>
+    </div>
+    <div class="container"  *ngIf="choosePokemon && !pokemonEmpty"> 
+    <h4>{{pokemon.name | titlecase}}                  #{{pokemon.id}}</h4>
+
+    <p> <img src="{{pokemon.img_front_url}}" style="width: 100px"/><img src="{{pokemon.img_back_url}}" style="width: 100px"/></p>
+    <p>Height:  {{pokemon.height}}</p>
+    <p>Weight: {{pokemon.weight}}</p>
+
+    <p><b>Abilities:</b></p>
+    <div *ngFor="let ability of pokemon.abilities">
+      <p>{{ability.name}}: <i>{{ability.description}}</i></p>
+    </div>
+
+         <div class="row">
+         <div *ngFor="let type of pokemon.types" class="types">
+           <p id="{{type.name}}" class="type">{{type.name | uppercase }}</p>
+         </div>
+        </div>
+
+        </div>
+
   </div>
 </div>
-
-
-</body>
-</html>
 
 
 
