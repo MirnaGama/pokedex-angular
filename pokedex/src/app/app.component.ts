@@ -16,7 +16,8 @@ export class AppComponent {
   namePokemon: string; 
   nameType: string;
   pokemonList = new Array();
-  p: number = 1;
+  pagPokList: number = 1; // pokemon list
+  pagAbiList: number = 1; // pokemon's abilities list
   choosePokemon = false;
   pokemonEmpty = false;
   pokemonListEmpty = true;
@@ -36,6 +37,8 @@ export class AppComponent {
   }
 
   searchByType() {
+    this.pagPokList = 1;
+    
     this.nameType = this.nameType.toLowerCase();
     this.pokemonList = this.pkService.searchByTypeName(this.nameType);
   }

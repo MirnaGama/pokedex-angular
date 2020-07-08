@@ -15,7 +15,7 @@
 
             <div class="main-section__blue">
 
-              <div class="welcomeBanner" *ngIf="!choosePokemon">
+              <div class="main-screen__welcomeBanner" *ngIf="!choosePokemon">
               <h1>WELCOME TO THE ANGULAR POKEDEX!</h1>
                 <h4>Search a pokemon!</h4>
 
@@ -32,7 +32,7 @@
               
                   <div class="info_abilities">
                   <h6>Abilities:</h6>
-                  <div *ngFor="let ability of pokemon.abilities">
+                  <div *ngFor="let ability of pokemon.abilities | paginate: { itemsPerPage: 2, currentPage: pagAbiList }">
                     <p>{{ability.name}}: <i>{{ability.description}}</i></p>
                   </div>
                   </div>
@@ -46,13 +46,16 @@
                       </div>
 
               <div class="main-screen hide">
-                
-                
 
               </div>
+
+              
+            
             </div>
 
             <button class="rounded-button" (click)="clear()">CLEAR</button>
+
+            
           </div>
         </div>
         
@@ -61,18 +64,21 @@
     <div class="right-container">
       <div class="right-container__black">
         <div class="right-container__screen">
-          <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 16, currentPage: p }">
+
+          <div class="list-area">
+          <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 10, currentPage: pagPokList }">
 
             <div class="list-item" (click)="show(pokemon)">
             {{pokemon.name | titlecase}}
             </div>
           </div>
+      </div>
 
-        </div>
+      <div class="pagination">
+        <pagination-controls (pageChange)="pagPokList = $event" class="hide-page-numbers"></pagination-controls></div>
+    </div>
       </div>
       <div class="right-container_bottom">
-
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
         <div class="top-inputs">
           <input type="text"  [(ngModel)]="this.nameType" />

@@ -86,3 +86,7 @@
   #fighting {
     background-color: rgb(109, 36, 14);
   }
+
+  .hide-page-numbers /deep/ .ngx-pagination li:not(.pagination-previous):not(.pagination-next) {
+    display: none;
+  }

@@ -1,18 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    display: flex;
-    justify-content: center;
-    font-family: 'Press Start 2P', cursive !important;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-  }
   
   .pokedex {
     align-items: flex-end;
@@ -107,6 +93,12 @@
     padding: 15px;
     
   }
+
+  .main-screen__welcomeBanner {
+
+    padding-top: 40px;
+    text-align: center;
+  }
   
   .screen__header {
     align-items: center;
@@ -125,7 +117,7 @@
 
   .info_height_weight p {
     padding-right: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
   }
 
   .info_abilities h6 {
@@ -134,7 +126,7 @@
   }
 
   .info_abilities p {
-    padding-bottom: 5px;
+    padding-bottom: 2px;
     font-size: 10px;
   }
 
@@ -212,9 +204,6 @@
   .right-container__screen {
     background: #43B0F2;
     border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     height: 100%;
     padding: 15px 15px 0;
   }
@@ -226,10 +215,22 @@
     display: flex;
     text-align: center;
     font-size: 10px;
-    height: 25px;
+    height: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     overflow-x: hidden;
     padding-left: 5px;
-    width: 50%;
+    width: 120px;
+    border-bottom: 1px #61bcee groove;
+  }
+
+  .list-area {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 20px;
   }
   
   .list-item:hover {
@@ -241,6 +242,12 @@
     background: #1280f2;
     color: white;
   }
+
+  .pagination {
+    height: 30px;
+    font-size: 10px;
+    color: white;
+  }
   
   .top-inputs {
     margin-left: 20px;
@@ -250,9 +257,17 @@
   }
 
   input {
-      width: 130px;
+      width: 110px;
+      margin-left: 10px;
       background-color : #000000;
       color: #61bcee;
+  }
+
+  button {
+    width: 110px;
+    font-size: 8px;
+    margin-left: 10px;
+    margin-top: 5px;
   }
   
   
