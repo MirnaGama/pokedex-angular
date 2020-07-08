@@ -49,4 +49,8 @@ export class AppComponent {
 
   }
 
+  clear() {
+    this.pokemon = new Pokemon();
+  }
+
   }

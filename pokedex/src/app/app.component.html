@@ -1,63 +1,88 @@
 
-  <div class="search"><input type="text" [(ngModel)]="this.namePokemon"/>
-  <button (click)="searchPokemonByName()">search by name</button>
+  <div class="pokedex">
+    <div class="left-container">
+      <div class="left-container__top-section">
+        <div class="top-section__blue"></div>
+        <div class="top-section__small-buttons">
+          <div class="top-section__red"></div>
+          <div class="top-section__yellow"></div>
+          <div class="top-section__green"></div>
+        </div>
+      </div>
+      <div class="left-container__main-section-container">
+        <div class="left-container__main-section">
+          <div class="main-section__white">
+
+            <div class="main-section__blue">
+
+              <div class="welcomeBanner" *ngIf="!choosePokemon">
+              <h1>WELCOME TO THE ANGULAR POKEDEX!</h1>
+                <h4>Search a pokemon!</h4>
+
+                </div>
 
 
-<input type="text" [(ngModel)]="this.nameType"/>
-  <button (click)=" searchByType()">search by type</button>
+                <div *ngIf="choosePokemon && !pokemonEmpty"> 
+                  <h4 class="poke-name">{{pokemon.name | titlecase}}                  #{{pokemon.id}}</h4>
+              
+                  <p> <img src="{{pokemon.img_front_url}}" style="width: 80px"/><img src="{{pokemon.img_back_url}}" style="width: 80px"/></p>
+                  
+                  <div class="info_height_weight"><p>Height:  {{pokemon.height}}</p>
+                  <p>Weight: {{pokemon.weight}}</p></div>
+              
+                  <div class="info_abilities">
+                  <h6>Abilities:</h6>
+                  <div *ngFor="let ability of pokemon.abilities">
+                    <p>{{ability.name}}: <i>{{ability.description}}</i></p>
+                  </div>
+                  </div>
+              
+                       <div class="row">
+                       <div *ngFor="let type of pokemon.types" class="types">
+                         <p id="{{type.name}}" class="type">{{type.name | uppercase }}</p>
+                       </div>
+                      </div>
+              
+                      </div>
 
-<div class="pokemonList">
+              <div class="main-screen hide">
+                
+                
 
-  <div class="row">
-  <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 6, currentPage: p }">
+              </div>
+            </div>
 
-    <div class="card" (click)="show(pokemon)">
-    
-      <div class="container">
-       <b>{{pokemon.name | titlecase}}</b>
-
+            <button class="rounded-button" (click)="clear()">CLEAR</button>
+          </div>
+        </div>
+        
       </div>
     </div>
+    <div class="right-container">
+      <div class="right-container__black">
+        <div class="right-container__screen">
+          <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 16, currentPage: p }">
 
-  </div>
-  </div>
-
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
-
-
-  <div class="pokemonScreen">
-
-    <div class="welcomeBanner" *ngIf="!choosePokemon">
-      <h1>WELCOME TO THE ANGULAR POKEDEX!</h1>
-      <h4>Search a pokemon!</h4>
-    </div>
-
-    <div class="container" *ngIf="pokemonEmpty">
-      <h1>Oops! Pokemon not found! :(</h1>
-    </div>
-    <div class="container"  *ngIf="choosePokemon && !pokemonEmpty"> 
-    <h4>{{pokemon.name | titlecase}}                  #{{pokemon.id}}</h4>
-
-    <p> <img src="{{pokemon.img_front_url}}" style="width: 100px"/><img src="{{pokemon.img_back_url}}" style="width: 100px"/></p>
-    <p>Height:  {{pokemon.height}}</p>
-    <p>Weight: {{pokemon.weight}}</p>
-
-    <p><b>Abilities:</b></p>
-    <div *ngFor="let ability of pokemon.abilities">
-      <p>{{ability.name}}: <i>{{ability.description}}</i></p>
-    </div>
-
-         <div class="row">
-         <div *ngFor="let type of pokemon.types" class="types">
-           <p id="{{type.name}}" class="type">{{type.name | uppercase }}</p>
-         </div>
-        </div>
+            <div class="list-item" (click)="show(pokemon)">
+            {{pokemon.name | titlecase}}
+            </div>
+          </div>
 
         </div>
+      </div>
+      <div class="right-container_bottom">
 
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+        <div class="top-inputs">
+          <input type="text"  [(ngModel)]="this.nameType" />
+          
+          <input type="text" [(ngModel)]="this.namePokemon" />
+
+          <button (click)=" searchByType()">search by type</button>
+
+          <button (click)="searchPokemonByName()">search by name</button>
+            
+        </div>
+    </div>
   </div>
-</div>
-
-
-
-<router-outlet></router-outlet>
