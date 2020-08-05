@@ -16,13 +16,13 @@
             <div class="main-section__blue">
 
               <div class="main-screen__welcomeBanner" *ngIf="!choosePokemon">
-              <h1>WELCOME TO THE ANGULAR POKEDEX!</h1>
-                <h4>Search a pokemon!</h4>
+              <h1>{{title}}</h1>
+                <h4>{{subtitle}}</h4>
 
                 </div>
 
 
-                <div *ngIf="choosePokemon && !pokemonEmpty"> 
+                <div *ngIf="choosePokemon"> 
                   <h4 class="poke-name">{{pokemon.name | titlecase}}                  #{{pokemon.id}}</h4>
               
                   <p> <img src="{{pokemon.img_front_url}}" style="width: 80px"/><img src="{{pokemon.img_back_url}}" style="width: 80px"/></p>
@@ -53,7 +53,8 @@
             
             </div>
 
-            <button class="rounded-button" (click)="clear()">CLEAR</button>
+            <div class="left-container__bottom">
+            <button class="rounded-button" (click)="clear()" [disabled]="!choosePokemon ? true : false">CLEAR</button> </div>
 
             
           </div>
@@ -62,25 +63,31 @@
       </div>
     </div>
     <div class="right-container">
-      <div class="right-container__black">
+      <div class="right-container__white">
         <div class="right-container__screen">
 
           <div class="list-area">
-          <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 10, currentPage: pagPokList }">
+          <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 12, currentPage: pagPokList }">
 
-            <div class="list-item" (click)="show(pokemon)">
+            <div class="list-item" (click)="clickPokemon(pokemon.name)">
             {{pokemon.name | titlecase}}
             </div>
           </div>
       </div>
 
-      <div class="pagination">
-        <pagination-controls (pageChange)="pagPokList = $event" class="hide-page-numbers"></pagination-controls></div>
-    </div>
+       
+
+        </div>
       </div>
       <div class="right-container_bottom">
 
-        <div class="top-inputs">
+        <div class="bottom-buttons">
+          <pagination-controls (pageChange)="pagPokList = $event" class=" hide hide-page-numbers"></pagination-controls>
+          <button class="pagination-button" (click)="previousPage()" [disabled]="pagPokList == 1 || pokemonList.length == 0 ? true : false">&#10094; PREVIOUS</button> 
+          <button class="pagination-button" (click)="nextPage()" [disabled]="pagPokList == getTotalPages() || pokemonList.length == 0 ? true : false">NEXT &#10095;</button>
+        </div>
+
+        <div class="bottom-inputs">
           <input type="text"  [(ngModel)]="this.nameType" />
           
           <input type="text" [(ngModel)]="this.namePokemon" />

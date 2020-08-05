@@ -56,7 +56,7 @@ export class PokemonService {
 
 
     }, (error) => {
-       console.log("POKEMON NAO ENCONTRADO")
+       console.log("POKEMON NOT FOUND")
        return null; })
 
     return pok;
@@ -71,7 +71,7 @@ export class PokemonService {
       data['pokemon'].forEach(element => {
 
        let pokemon = new Pokemon();
-        pokemon = this.searchPokemonByName(element['pokemon']['name'])
+        pokemon.name = element['pokemon']['name']
 
         pokemonList.push(pokemon);
       })
@@ -79,7 +79,7 @@ export class PokemonService {
     }, 
     
     (error) => {
-      console.log("LISTA DE POKEMON NAO ENCONTRADA") 
+      console.log("POKEMON LIST NOT FOUND") 
       return null;
   })
 

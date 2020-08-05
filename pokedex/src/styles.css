@@ -13,80 +13,14 @@
     font-family: 'Press Start 2P', cursive !important;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   }
-
-
-  #water {
-    background-color: rgb(63, 141, 194);
-  }
-
-  #ice {
-    background-color: rgb(89, 230, 218);
-  }
-
-  #grass {
-    background-color: rgb(64, 175, 79);
-  }
-
-  #bug {
-    background-color: rgb(112, 206, 69);
-  }
-
-  #poison {
-    background-color: rgb(123, 39, 131);
-  }
-
-  #dark {
-    background-color: rgb(31, 25, 32);
-  }
-
-  #electric {
-    background-color: rgb(238, 200, 32);
-  }
-
-  #fire {
-    background-color: rgb(221, 43, 43);
-  }
-
-  #rock {
-    background-color: rgb(173, 123, 66);
-  }
-
-  #psychic {
-    background-color: rgb(199, 71, 156);
-  }
-
-  #steel {
-    background-color: rgb(128, 123, 126);
-  }
-
-  #ground {
-    background-color: rgb(161, 147, 65);
-  }
-
-  #fairy {
-    background-color: rgb(224, 129, 193);
-  }
-
-  #normal {
-    background-color: rgb(160, 156, 150);
-  }
-
-  #dragon {
-    background-color: rgb(120, 81, 228);
-  }
-
-  #flying {
-    background-color: rgb(113, 111, 247);
-  }
-
-  #ghost {
-    background-color: rgb(87, 56, 170);
-  }
-
-  #fighting {
-    background-color: rgb(109, 36, 14);
-  }
+  
 
   .hide-page-numbers /deep/ .ngx-pagination li:not(.pagination-previous):not(.pagination-next) {
     display: none;
+  }
+
+  .hide-page-numbers { 
+    font-size: 8px;
+    margin-left: 10px;
+    margin-top: 10px;
   }
