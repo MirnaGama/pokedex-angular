@@ -15,9 +15,7 @@ export class AppComponent {
   nameType: string;
   pokemonList = new Array();
   pagPokList: number = 1; // pokemon list
-  pagAbiList: number = 1; // pokemon's abilities list
   choosePokemon = false;
-  pokemonListEmpty = true;
   title: string;
   subtitle: string;
 
@@ -34,12 +32,7 @@ export class AppComponent {
 
     this.pokemon = this.pkService.searchPokemonByName(this.namePokemon);
 
-    if (this.pokemon.id) {
     this.show(this.pokemon);
-    } else {
-    this.choosePokemon = false;
-    this.setErrorDisplay();
-    }
   }
 
   searchByType() {
@@ -51,11 +44,16 @@ export class AppComponent {
 
   show(pokemon) {
 
-    this.pokemon = pokemon;
+    console.log(this.pokemon);
 
-    this.choosePokemon = true; 
-
-    this.namePokemon = ''
+    if (this.pokemon) {
+      this.pokemon = pokemon;
+      this.choosePokemon = true; 
+      this.namePokemon = ''
+      } else {
+      this.choosePokemon = false;
+      this.setErrorDisplay();
+      }
 
   }
 
@@ -71,6 +69,8 @@ export class AppComponent {
   clear() {
     this.pokemon = new Pokemon();
     this.choosePokemon = false;
+    this.title = "Display Cleared!"
+    this.subtitle = "Would you like to search another pokemon?"
   }
 
   setErrorDisplay() {
@@ -80,7 +80,6 @@ export class AppComponent {
 
   nextPage() {
     this.pagPokList++;
-
   }
 
   previousPage() {

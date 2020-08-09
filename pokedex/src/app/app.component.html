@@ -32,7 +32,7 @@
               
                   <div class="info_abilities">
                   <h6>Abilities:</h6>
-                  <div *ngFor="let ability of pokemon.abilities | paginate: { itemsPerPage: 2, currentPage: pagAbiList }">
+                  <div *ngFor="let ability of pokemon.abilities | slice:0:2;">
                     <p>{{ability.name}}: <i>{{ability.description}}</i></p>
                   </div>
                   </div>
