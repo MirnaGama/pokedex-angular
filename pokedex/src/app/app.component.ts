@@ -18,6 +18,9 @@ export class AppComponent {
   choosePokemon = false;
   title: string;
   subtitle: string;
+  indexPokemon: number;
+  button_sfx = new Audio();
+  success_sfx = new Audio();
 
   constructor(private pkService: PokemonService) {
   }
@@ -25,31 +28,43 @@ export class AppComponent {
   ngOnInit() {
     this.title = "WELCOME TO THE ANGULAR POKEDEX!";
     this.subtitle = "Search a pokemon!";
+
+    this.button_sfx.src = '/assets/sounds/button-sfx.mp3';
+    this.button_sfx.setAttribute('crossorigin', 'anonymous');
+
+    this.success_sfx.src = '/assets/sounds/success-sfx1.mp3';
+    this.success_sfx.setAttribute('crossorigin', 'anonymous');
   }
 
   searchPokemonByName() {
+    this.button_sfx.play();
     this.namePokemon = this.namePokemon.toLowerCase();
 
     this.pokemon = this.pkService.searchPokemonByName(this.namePokemon);
 
-    this.show(this.pokemon);
+    this.show();
   }
 
   searchByType() {
+    this.button_sfx.play();
     this.pagPokList = 1;
     
     this.nameType = this.nameType.toLowerCase();
     this.pokemonList = this.pkService.searchByTypeName(this.nameType);
   }
 
-  show(pokemon) {
-
-    console.log(this.pokemon);
+  show() {
 
     if (this.pokemon) {
-      this.pokemon = pokemon;
       this.choosePokemon = true; 
-      this.namePokemon = ''
+      this.namePokemon = '';
+
+      this.indexPokemon = this.pokemonList.findIndex(item => item == this.pokemon);
+      console.log(this.pokemon);
+       // find the index (not working yet)
+
+      console.log(this.indexPokemon)
+
       } else {
       this.choosePokemon = false;
       this.setErrorDisplay();
@@ -67,6 +82,7 @@ export class AppComponent {
   }
 
   clear() {
+    this.success_sfx.play();
     this.pokemon = new Pokemon();
     this.choosePokemon = false;
     this.title = "Display Cleared!"
@@ -80,10 +96,12 @@ export class AppComponent {
 
   nextPage() {
     this.pagPokList++;
+    this.button_sfx.play();
   }
 
   previousPage() {
     this.pagPokList--;
+    this.button_sfx.play();
   }
 
   getTotalPages(): number {

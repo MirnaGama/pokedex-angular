@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from 'src/utils/models';
+import { isNgTemplate } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,8 @@ export class PokemonService {
       return null;
   })
 
+    pokemonList.sort((a, b) => a.name.localeCompare(b.name)); // ORDER BY NAME ASC (NOT WORKING YET)
     return pokemonList;
   }
+
 }

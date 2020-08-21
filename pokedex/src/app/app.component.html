@@ -23,7 +23,7 @@
 
 
                 <div *ngIf="choosePokemon"> 
-                  <h4 class="poke-name">{{pokemon.name | titlecase}}                  #{{pokemon.id}}</h4>
+                  <h3 class="poke-name">{{pokemon.name | titlecase}}                  #{{pokemon.id}}</h3>
               
                   <p> <img src="{{pokemon.img_front_url}}" style="width: 80px"/><img src="{{pokemon.img_back_url}}" style="width: 80px"/></p>
                   
@@ -92,10 +92,11 @@
           
           <input type="text" [(ngModel)]="this.namePokemon" />
 
-          <button (click)=" searchByType()">search by type</button>
+          <button (click)="searchByType()">search by type</button>
 
           <button (click)="searchPokemonByName()">search by name</button>
             
         </div>
     </div>
+
   </div>
