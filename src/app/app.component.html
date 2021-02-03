@@ -66,7 +66,7 @@
       <div class="right-container__white">
         <div class="right-container__screen">
 
-          <div class="list-area">
+          <div class="list-area" *ngIf="listFilled">
           <div *ngFor="let pokemon of pokemonList | paginate: { itemsPerPage: 12, currentPage: pagPokList }">
 
             <div class="list-item" (click)="clickPokemon(pokemon.name)">

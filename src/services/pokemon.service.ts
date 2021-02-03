@@ -15,7 +15,7 @@ export class PokemonService {
   constructor(private http: HttpClient) {
    }
 
-   searchPokemonByName(name): any {
+   searchPokemonByName(name): Pokemon {
     let pokemonRequest = this.http.get<any>(this.pokemonUrl + name);
     var pok = new Pokemon();
     
@@ -63,9 +63,9 @@ export class PokemonService {
     return pok;
   }
 
-  searchByTypeName(name): any {
+  searchByTypeName(name): Array<Pokemon> {
     let typeRequest = this.http.get<any>(this.typeUrl+name);
-    let pokemonList = new Array();
+    let pokemonList= new Array<Pokemon>();
 
     typeRequest.subscribe((data) => {
 
@@ -84,8 +84,10 @@ export class PokemonService {
       return null;
   })
 
-    pokemonList.sort((a, b) => a.name.localeCompare(b.name)); // ORDER BY NAME ASC (NOT WORKING YET)
-    return pokemonList;
+ //   pokemonList.sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0) // ORDER BY NAME ASC (NOT WORKING YET)
+
+   return pokemonList;
   }
+
 
 }

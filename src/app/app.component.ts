@@ -15,7 +15,8 @@ export class AppComponent {
   nameType: string;
   pokemonList = new Array();
   pagPokList: number = 1; // pokemon list
-  choosePokemon = false;
+  choosePokemon: boolean = false;
+  listFilled: boolean = true;
   title: string;
   subtitle: string;
   indexPokemon: number;
@@ -51,6 +52,7 @@ export class AppComponent {
     
     this.nameType = this.nameType.toLowerCase();
     this.pokemonList = this.pkService.searchByTypeName(this.nameType);
+
   }
 
   show() {
@@ -59,8 +61,7 @@ export class AppComponent {
       this.choosePokemon = true; 
       this.namePokemon = '';
 
-      this.indexPokemon = this.pokemonList.findIndex(item => item == this.pokemon);
-      console.log(this.pokemon);
+     // this.indexPokemon = this.pokemonList.findIndex(item => item == this.pokemon);
        // find the index (not working yet)
 
       console.log(this.indexPokemon)
